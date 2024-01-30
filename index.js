@@ -31,7 +31,7 @@ router.get('/tous', (req, res) => {
             res.status(500).json({ error: 'Erreur serveur' });
         } else {
             // Renvoyer directement le tableau de résultats
-            res.json(result);
+            res.send(result);
         }
     });
 });
@@ -39,16 +39,19 @@ router.get('/tous', (req, res) => {
 router.get('/:id', (req, res) => {
     const pokemonId = parseInt(req.params.id);
 
-    // Recherche du Pokémon dans la liste (exemple simple, remplacez par votre propre logique de recherche)
-    const pokemon = pokemons.find(p => p.id === pokemonId);
+    const query = 'SELECT * FROM pokemon WHERE id = ' + pokemonId + ';'
 
-    if (!pokemon) {
-        // Si le Pokémon n'est pas trouvé, renvoyer une réponse 404 (Not Found)
-        return res.status(404).json({ error: 'Pokémon non trouvé' });
-    }
-
-    // Si le Pokémon est trouvé, renvoyer les détails du Pokémon
-    res.json(pokemon);
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erreur lors de la récupération des pokémons :', err);
+            res.status(500).json({ error: 'Erreur serveur' });
+        } else {
+            // Renvoyer directement le tableau de résultats
+            const listItems = result.map(salutation => `<li>${salutation.message}</li>`);
+            const html = `<ul>${listItems.join('')}</ul>`;
+            res.json(html);
+        }
+    });
 });
 
 
