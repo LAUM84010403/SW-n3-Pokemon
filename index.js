@@ -12,7 +12,6 @@ app.get('/', (req, res) => {
     res.send("<h1>Mon premier serveur web n3 sur express !</h1>");
 });
 
-
 const routes = require('./routes/routes_pokemon.js');
 app.use('/api/pokemon/', routes);
 
