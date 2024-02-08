@@ -1,11 +1,13 @@
 console.log("Je suis prêt à commencer");
-// Importer le module express
+
 const express = require('express');
 const mysql = require('mysql');
-// Nous créons un objet router qui va nous permettre de gérer les routes
+
 const router = express.Router();
 const app = express();
 const PORT = 3000;
+
+app.use(express.json());
 const db = require("./.src/config/db.js");
 
 app.get('/', (req, res) => {
