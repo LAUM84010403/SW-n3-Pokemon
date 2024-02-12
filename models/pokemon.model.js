@@ -28,7 +28,28 @@ module.exports = {
             });
         });
     },
+    supprimerPokemonDB: (pokemonId) => {
+        const infoQuery = 'SELECT * FROM pokemon WHERE id = ?';
+        const deleteQuery = 'DELETE FROM pokemon WHERE id = ?';
 
+        return new Promise((resolve, reject) => {
+            db.query(deleteQuery, [pokemonId], (err, deleteResult) => {
+                if (err) {
+                    console.error('Erreur lors de la suppression du pokémon :', err);
+                    reject(err);
+                } else {
+                    db.query(infoQuery, [pokemonId], (err, infoResult) => {
+                        if (err) {
+                            console.error('Erreur lors de la récupération du pokémon :', err);
+                            reject(err);
+                        } else {
+                            resolve(infoResult);
+                        }
+                    });
+                }
+            });
+        });
+    }
 
 
 

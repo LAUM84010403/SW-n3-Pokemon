@@ -21,13 +21,13 @@
 
       "/api/pokemon/{id}": {
         "get": {
-          "summary": "recup un pokemon par son id",
-          "description": "recupere un pokemon par son id dans la base de donne",
+          "summary": "Voir un pokemon selon son ID",
+          "description": "Recupère dans la base de donnée, le pokémon avec l'ID fournit",
           "parameters": [
             {
               "in": "path",
               "name": "id",
-              "description": "le id du pokemon a recupere",
+              "description": "l'ID du pokemon",
               "required": true,
               "schema": {
                 "type": "integer"
@@ -36,44 +36,19 @@
           ],
           "responses": {
             "200": {
-              "description": "pokemon avec le id demander"
+              "description": "Le pokemon avec l'ID spécifier"
             },
             "404": {
-              "description": "si le pokemon avec le id demander est absent"
+              "description": "Aucun pokemon n'est associé au ID"
             }
           }
         }
       },
-      
-      "/api/pokemon/type/{type}": {
-        "get": {
-          "summary": "recuper une liste de pokemon par le type",
-          "description": "recupere une liste des pokemon a partire de la base de donne",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "type",
-              "description": "le type de pokemon a retoure",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "une liste de pokemon tire par type"
-            },
-            "404": {
-              "description": "si aucun pokemon de ce type est trouver"
-            }
-          }
-        }
-      },
+
       "/api/pokemon": {
         "post": {
-          "summary": "Ajouter un nouveau okemon",
-          "description": "ajouter une nouvelle entre a la base de donne",
+          "summary": "Ajouter un nouveau pokemon",
+          "description": "Créer nouveau pokémon dans la base de donnée",
           "requestBody": {
             "required": true,
             "content": {
@@ -81,12 +56,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "nom": { "type": "string" },
-                    "type_primaire": { "type": "string" },
-                    "type_secondaire": { "type": "string" },
-                    "pv": { "type": "integer" },
-                    "attaque": { "type": "integer" },
-                    "defense": { "type": "integer" }
+                    "nom":              { "type": "string" },
+                    "type_primaire":    { "type": "string" },
+                    "type_secondaire":  { "type": "string" },
+                    "pv":               { "type": "integer" },
+                    "attaque":          { "type": "integer" },
+                    "defense":          { "type": "integer" }
                   }
                 }
               }
@@ -94,10 +69,10 @@
           },
           "responses": {
             "201": {
-              "description": "le pokemon ajouter"
+              "description": "Le pokémon a bien été rajouté!"
             },
             "500": {
-              "description": "si il y a un erreur durrant l'ajout"
+              "description": "Une erreur est survenu dans la base de donnée"
             }
           }
         },
@@ -122,12 +97,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "nom": { "type": "string" },
-                    "type_primaire": { "type": "string" },
-                    "type_secondaire": { "type": "string" },
-                    "pv": { "type": "integer" },
-                    "attaque": { "type": "integer" },
-                    "defense": { "type": "integer" }
+                    "nom":              { "type": "string" },
+                    "type_primaire":    { "type": "string" },
+                    "type_secondaire":  { "type": "string" },
+                    "pv":               { "type": "integer" },
+                    "attaque":          { "type": "integer" },
+                    "defense":          { "type": "integer" }
                   }
                 }
               }
@@ -146,13 +121,13 @@
           }
         },
         "delete": {
-          "summary": "Effacer pokemon",
-          "description": "efface un pokemon de la base de donne",
+          "summary": "Effacer un pokemon",
+          "description": "Supprimer un pokemon de la base de donnée",
           "parameters": [
             {
               "in": "path",
               "name": "id",
-              "description": "le id du pokemon effacer",
+              "description": "L'ID du pokemon supprimé",
               "required": true,
               "schema": {
                 "type": "integer"
@@ -161,13 +136,13 @@
           ],
           "responses": {
             "200": {
-              "description": "si le pokemon est supprimer avec succes"
+              "description": "Le pokemon a bien été supprimée"
             },
             "404": {
-              "description": "si le pokemon avec l'id specifier n'est pas trouver"
+              "description": "Le pokemon n'a pas été trouvé"
             },
             "500": {
-              "description": "si il y a eu une erreur lors de effacement"
+              "description": "Une erreur est survenu dans la base de donnée"
             }
           }
         }
