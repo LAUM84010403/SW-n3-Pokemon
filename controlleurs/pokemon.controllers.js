@@ -3,6 +3,7 @@
 const model = require('../models/pokemon.model');
 
 module.exports = {
+
     afficherTousPokemon: (req, res) => {
         model.obtenirTousPokemonDB()
             .then(result => {
