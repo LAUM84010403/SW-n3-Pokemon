@@ -49,14 +49,71 @@ module.exports = {
 
         model.supprimerPokemonDB(pokemonId)
             .then(deletedPokemon => {
+                res.send("La disparition de l'être voulu s'est bien passé!^^")
                 res.status(200).json(deletedPokemon);
             })
             .catch(error => {
                 console.error('Erreur lors de la suppression du pokémon :', error);
                 res.status(500).json({ error: 'Erreur serveur' });
             });
+    },
+    ajouterPokemon: (req, res) => {
+        const { nom, type_primaire, type_secondaire, pv, attaque, defense } = req.body;
+
+        if (!nom || !type_primaire || !type_secondaire || pv === undefined || attaque === undefined || defense === undefined) {
+            return res.status(400).json({
+                erreur: "Le format des données est invalide",
+                champ_manquant: ["nom", "type_primaire", "type_secondaire", "pv", "attaque", "defense"]
+            });
+        } else {
+            model.ajouterNouveauPokemonDB(nom, type_primaire, type_secondaire, pv, attaque, defense)
+                .then(result => {
+                    res.status(201).json({
+                        message: `Le Pokémon ${nom} a été ajouté avec succès`,
+                        pokemon: {
+                            nom,
+                            type_primaire,
+                            type_secondaire,
+                            pv,
+                            attaque,
+                            defense
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Erreur lors de l\'ajout du Pokémon :', error);
+                    res.status(500).json({ error: 'Erreur serveur' });
+                });
+        }
+    },
+    updatePokemon: (req, res) => {
+        const { id, nom, type_primaire, type_secondaire, pv, attaque, defense } = req.body;
+
+        if (!id || !nom || !type_primaire || !type_secondaire || pv === undefined || attaque === undefined || defense === undefined) {
+            return res.status(400).json({
+                erreur: "Le format des données est invalide",
+                champ_manquant: ["id", "nom", "type_primaire", "type_secondaire", "pv", "attaque", "defense"]
+            });
+        } else {
+            model.updatePokemonInDatabase(id, nom, type_primaire, type_secondaire, pv, attaque, defense)
+                .then(result => {
+                    res.status(200).json({
+                        message: `Le Pokémon avec l'ID ${id} a été mis à jour avec succès`,
+                        pokemon: {
+                            id,
+                            nom,
+                            type_primaire,
+                            type_secondaire,
+                            pv,
+                            attaque,
+                            defense
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la mise à jour du Pokémon :', error);
+                    res.status(500).json({ error: 'Erreur serveur' });
+                });
+        }
     }
-
-
-
 };

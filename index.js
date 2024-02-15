@@ -8,6 +8,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const db = require("./.src/config/db.js");
 
 //initier swagger-ui

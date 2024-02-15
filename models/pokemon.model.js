@@ -49,8 +49,34 @@ module.exports = {
                 }
             });
         });
+    },
+    ajouterNouveauPokemonDB: (nom, type_primaire, type_secondaire, pv, attaque, defense) => {
+        const query = 'INSERT INTO pokemon(nom, type_primaire, type_secondaire, pv, attaque, defense) VALUES (?, ?, ?, ?, ?, ?)';
+        const values = [nom, type_primaire, type_secondaire, pv, attaque, defense];
+
+        return new Promise((resolve, reject) => {
+            db.query(query, values, (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
+    updatePokemonInDatabase: (id, nom, type_primaire, type_secondaire, pv, attaque, defense) => {
+        const query = 'UPDATE pokemon SET nom = ?, type_primaire = ?, type_secondaire = ?, pv = ?, attaque = ?, defense = ? WHERE id = ?';
+        const values = [nom, type_primaire, type_secondaire, pv, attaque, defense, id];
+
+        return new Promise((resolve, reject) => {
+            db.query(query, values, (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
     }
-
-
 
 };

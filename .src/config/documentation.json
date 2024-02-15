@@ -42,8 +42,35 @@
               "description": "Aucun pokemon n'est associé au ID"
             }
           }
+        },
+        "delete": {
+          "summary": "Effacer un pokemon",
+          "description": "Supprimer un pokemon de la base de donnée",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "L'ID du pokemon supprimé",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Le pokemon a bien été supprimée"
+            },
+            "404": {
+              "description": "Le pokemon n'a pas été trouvé"
+            },
+            "500": {
+              "description": "Une erreur est survenu dans la base de donnée"
+            }
+          }
         }
       },
+
 
       "/api/pokemon": {
         "post": {
@@ -78,12 +105,12 @@
         },
         "put": {
           "summary": "Mise a jour d'un pokemon",
-          "description": "met a jour une entre dans la base de donne",
+          "description": "Met à jour l'un des pokémon selon son ID",
           "parameters": [
             {
               "in": "path",
               "name": "id",
-              "description": "le id du pokemon a ajouter",
+              "description": "l'ID du pokemon à modifier",
               "required": true,
               "schema": {
                 "type": "integer"
@@ -97,6 +124,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "ID":               { "type": "integer"},
                     "nom":              { "type": "string" },
                     "type_primaire":    { "type": "string" },
                     "type_secondaire":  { "type": "string" },
@@ -110,33 +138,7 @@
           },
           "responses": {
             "200": {
-              "description": "le pokemon mis a jour"
-            },
-            "404": {
-              "description": "si le pokemon avec le id est introuvable"
-            },
-            "500": {
-              "description": "si il y a eu un erreu durant la mise a jour"
-            }
-          }
-        },
-        "delete": {
-          "summary": "Effacer un pokemon",
-          "description": "Supprimer un pokemon de la base de donnée",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "id",
-              "description": "L'ID du pokemon supprimé",
-              "required": true,
-              "schema": {
-                "type": "integer"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Le pokemon a bien été supprimée"
+              "description": "La mise à jour du pokemon à marcher"
             },
             "404": {
               "description": "Le pokemon n'a pas été trouvé"
