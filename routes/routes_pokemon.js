@@ -22,7 +22,7 @@ router.get('/:id', controller.afficherUnPokemon);
 router.delete('/:id', controller.supprimerPokemon);
 
 //MODIFIER POKEMON
-router.put('/', controller.updatePokemon);
+router.put('/', controller.modifierPokemon);
 
 //AJOUTER POKEMON
 router.post('/', controller.ajouterPokemon);

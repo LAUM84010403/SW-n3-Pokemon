@@ -86,7 +86,7 @@ module.exports = {
                 });
         }
     },
-    updatePokemon: (req, res) => {
+    modifierPokemon: (req, res) => {
         const { id, nom, type_primaire, type_secondaire, pv, attaque, defense } = req.body;
 
         if (!id || !nom || !type_primaire || !type_secondaire || pv === undefined || attaque === undefined || defense === undefined) {
@@ -95,7 +95,7 @@ module.exports = {
                 champ_manquant: ["id", "nom", "type_primaire", "type_secondaire", "pv", "attaque", "defense"]
             });
         } else {
-            model.updatePokemonInDatabase(id, nom, type_primaire, type_secondaire, pv, attaque, defense)
+            model.modifierPokemonDB(id, nom, type_primaire, type_secondaire, pv, attaque, defense)
                 .then(result => {
                     res.status(200).json({
                         message: `Le Pokémon avec l'ID ${id} a été mis à jour avec succès`,

@@ -64,7 +64,7 @@ module.exports = {
             });
         });
     },
-    updatePokemonInDatabase: (id, nom, type_primaire, type_secondaire, pv, attaque, defense) => {
+    modifierPokemonDB: (id, nom, type_primaire, type_secondaire, pv, attaque, defense) => {
         const query = 'UPDATE pokemon SET nom = ?, type_primaire = ?, type_secondaire = ?, pv = ?, attaque = ?, defense = ? WHERE id = ?';
         const values = [nom, type_primaire, type_secondaire, pv, attaque, defense, id];
 
@@ -78,6 +78,5 @@ module.exports = {
             });
         });
     }
-    //idjaousndfiuobasu
 
 };
