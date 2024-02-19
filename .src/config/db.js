@@ -2,6 +2,8 @@ const mysql = require("mysql");
 const dotenv = require("dotenv");
 dotenv.config();
 
+
+//POOL DE CONNEXION, VARIABLE INITIALISER DANS LE .env
 const pool = mysql.createPool({
     connectionLimit: process.env.MYSQL_CONNECTION_LIMIT,
     host: process.env.MYSQL_HOST,

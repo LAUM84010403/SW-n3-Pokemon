@@ -1,5 +1,6 @@
-// controller.js
+// CODAGE(controlleurs) DE L'API POKEMON
 
+//appel des manipulation de la base de donnée
 const model = require('../models/pokemon.model');
 
 module.exports = {

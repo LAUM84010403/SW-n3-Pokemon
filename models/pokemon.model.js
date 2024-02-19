@@ -1,8 +1,11 @@
-// model.js
+// MANIPULATION(model) DE LA BASE DE DONNÉ POUR L'API POKEMON
 
+//Base de donnée
 const db = require('../.src/config/db.js');
 
+//équivalent du main
 module.exports = {
+
     obtenirTousPokemonDB: () => {
         const query = 'SELECT * FROM pokemon ORDER BY id';
         return new Promise((resolve, reject) => {
@@ -15,7 +18,6 @@ module.exports = {
             });
         });
     },
-
     obtenirUnPokemonDB: (pokemonId) => {
         const query = 'SELECT * FROM pokemon WHERE id = ?';
         return new Promise((resolve, reject) => {
