@@ -28,10 +28,12 @@ app.get('/', (req, res) => {
 });
 
 //ROUTES POKEMON
-const routes = require('./routes/routes_pokemon.js');
-app.use('/api/pokemon/', routes);
+const routesPokemon = require('./routes/routes_pokemon.js');
+app.use('/api/pokemon/', routesPokemon);
 
-
+//ROUTES Utilisateur
+const routes = require('./routes/routes_users.js');
+app.use('/api/users/', routes);
 
 
 app.listen(PORT, () => {

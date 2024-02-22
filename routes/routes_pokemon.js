@@ -6,7 +6,7 @@ const mysql = require('mysql');
 const router = express.Router();
 const app = express();
 
-//Base de donnée
+//controlleurs
 const controller = require('../controlleurs/pokemon.controllers.js');
 
 
