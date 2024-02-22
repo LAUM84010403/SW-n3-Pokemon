@@ -9,8 +9,8 @@ module.exports = {
 
 creerUtilisateurBD: (nom, courriel, mot_de_passe, apiCle) => {
     const checkQuery = 'SELECT COUNT(*) AS count FROM users WHERE courriel = ?';
-    const insertQuery = 'INSERT INTO users(nom, courriel, mot_de_passe, cle_api) VALUES (?, ?, ?, ?)';
-    const values = [nom, courriel, mot_de_passe, apiCle];
+    const insertQuery = 'INSERT INTO users(nom, courriel, cle_api, mot_de_passe) VALUES (?, ?, ?, ?)';
+    const values = [nom, courriel, apiCle];
 
     return new Promise((resolve, reject) => {
         // Vérification de l'adresse e-mail unique
