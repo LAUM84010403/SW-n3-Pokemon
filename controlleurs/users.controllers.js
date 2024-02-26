@@ -1,4 +1,4 @@
-// CODAGE(controlleurs) DE L'API POKEMON
+// CODAGE(controlleurs) DE L'API USERS
 
 //appel des manipulation de la base de donnée
 const model = require('../models/users.model');
