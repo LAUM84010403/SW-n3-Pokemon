@@ -46,8 +46,8 @@ module.exports = {
             });
     },
     afficherListe: (req, res) => {
-        console.log("FIR");
         
+        //VÉRIFICATION ET INITIALISATION
         typeTitre = req.params.type;
         var page = parseInt(req.query.page)
         if(page <= 0 || page == null ||!req.query.page){
@@ -65,7 +65,7 @@ module.exports = {
                 result: result,
                 filtre: req.params.type,
                 page: page,
-                url_page_suivante: "/api/pokemon/" + req.params.type + "?page=" + (page + 1)
+                url_page_suivante: "/api/pokemon/type/" + req.params.type + "?page=" + (page + 1)
             });
         })
             .catch(error => {
