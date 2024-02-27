@@ -45,6 +45,34 @@ module.exports = {
                 res.status(500).json({ error: 'Erreur serveur' });
             });
     },
+    afficherListe: (req, res) => {
+        console.log("FIR");
+        
+        typeTitre = req.params.type;
+        var page = parseInt(req.query.page)
+        if(page <= 0 || page == null ||!req.query.page){
+            page = 1;
+        }
+        const limit = 10;
+        const offset = (page - 1) * limit;
+
+
+
+        model.afficherListeBD(typeTitre, offset)
+
+        .then(result => {
+            res.status(200).json({
+                result: result,
+                filtre: req.params.type,
+                page: page,
+                url_page_suivante: "/api/pokemon/" + req.params.type + "?page=" + (page + 1)
+            });
+        })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des pokemons :', error);
+                res.status(500).json({ error: 'Erreur serveur' });
+            });
+    },
     supprimerPokemon: (req, res) => {
         const pokemonId = parseInt(req.params.id);
 

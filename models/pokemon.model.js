@@ -30,6 +30,19 @@ module.exports = {
             });
         });
     },
+    afficherListeBD: (typeTitre, offset) => {
+        return new Promise((resolve, reject) => {
+            const query = `SELECT id, nom FROM pokemon WHERE type_primaire = ? ORDER BY id LIMIT 10 OFFSET ?`;
+            const value = [typeTitre, offset]
+                db.query(query, value, (err, result) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });
+            });
+    },
     supprimerPokemonDB: (pokemonId) => {
         const infoQuery = 'SELECT * FROM pokemon WHERE id = ?';
         const deleteQuery = 'DELETE FROM pokemon WHERE id = ?';

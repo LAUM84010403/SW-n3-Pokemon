@@ -19,8 +19,11 @@ router.get('/', (req, res) => {
 //AFFICHER TOUT LES POKEMONS
 router.get('/tous', controller.afficherTousPokemon);
 
-//AFFICHER TOUT LES POKEMONS
+//AFFICHER UN POKEMON
 router.get('/:id', controller.afficherUnPokemon);
+
+//AFFICHER LISTE POKEMON
+router.get('/type/:type', controller.afficherListe);
 
 //SUPPRIMER UN POKEMON
 router.delete('/:id', controller.supprimerPokemon);
