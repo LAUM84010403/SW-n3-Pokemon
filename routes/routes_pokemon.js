@@ -16,6 +16,8 @@ router.get('/', (req, res) => {
 });
 
 
+
+
 //AFFICHER TOUT LES POKEMONS
 router.get('/tous', controller.afficherTousPokemon);
 
