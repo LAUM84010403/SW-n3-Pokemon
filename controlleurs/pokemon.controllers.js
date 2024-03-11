@@ -53,7 +53,7 @@ module.exports = {
         if(page <= 0 || page == null ||!req.query.page){
             page = 1;
         }
-        const limit = 10;
+        const limit = 25;
         const offset = (page - 1) * limit;
 
 
