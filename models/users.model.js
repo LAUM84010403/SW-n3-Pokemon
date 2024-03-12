@@ -7,7 +7,7 @@ const db = require('../.src/config/db.js');
 
 module.exports = {
 
-creerUtilisateurBD: (nom, courriel, mot_de_passe, apiCle) => {
+/*creerUtilisateurBD: (nom, courriel, mot_de_passe, apiCle) => {
     const checkQuery = 'SELECT COUNT(*) AS count FROM users WHERE courriel = ?';
     const insertQuery = 'INSERT INTO users(nom, courriel, cle_api, mot_de_passe) VALUES (?, ?, ?, ?)';
     const values = [nom, courriel, apiCle];
@@ -43,7 +43,7 @@ creerUtilisateurBD: (nom, courriel, mot_de_passe, apiCle) => {
         });
     });
 },
-
+*/
 verifierCleUnique: (apiKey) => {
     return new Promise((resolve, reject) => {
         // Requête SQL pour vérifier si la clé API est unique
