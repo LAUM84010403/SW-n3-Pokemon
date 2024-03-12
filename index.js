@@ -35,7 +35,6 @@ app.use('/api/pokemon/', routesPokemon);
 const routesUtilisateur = require('./routes/routes_users.js');
 app.use('/api/users/', routesUtilisateur);
 
-//serdg¸iuhgydgxugcfhgkj
 
 
 app.listen(PORT, () => {
