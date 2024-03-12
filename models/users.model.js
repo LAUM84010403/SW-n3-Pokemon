@@ -1,6 +1,6 @@
 // MANIPULATION(model) DE LA BASE DE DONNÉ POUR L'API USERS
 
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 
 //Base de donnée
 const db = require('../.src/config/db.js');
