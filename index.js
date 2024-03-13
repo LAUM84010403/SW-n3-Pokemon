@@ -3,7 +3,6 @@
 console.log("Je suis prêt à commencer");
 
 const express = require('express');
-const mysql = require('mysql');
 
 const router = express.Router();
 const app = express();
@@ -11,7 +10,6 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const db = require("./.src/config/db.js");
 
 //initier swagger-ui + DOCUMENTATIONS
 const swaggerUi = require('swagger-ui-express');

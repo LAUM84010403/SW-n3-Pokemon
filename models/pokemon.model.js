@@ -14,7 +14,7 @@ module.exports = {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result);
+                    resolve(resultat.rows);
                 }
             });
         });
