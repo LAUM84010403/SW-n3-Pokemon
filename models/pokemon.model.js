@@ -30,13 +30,16 @@ module.exports = {
                     reject(err);
                 }
 
-                resolve(result.rows);
+                resolve(result.row);
             });
         });
     },
     afficherListeBD: (typeTitre, offset) => {
         return new Promise((resolve, reject) => {
-            const query = `SELECT id, nom FROM pokemon WHERE type_primaire = $1 ORDER BY id LIMIT 25 OFFSET $2`;
+            const query = `SELECT id, nom FROM pokemon
+            WHERE type_primaire = $1 
+            ORDER BY id
+            LIMIT 25 OFFSET $2;`;
             const value = [typeTitre, offset]
                 db.query(query, value, (err, result) => {
                     if (err) {
@@ -84,7 +87,7 @@ module.exports = {
         });
     },
     modifierPokemonDB: (id, nom, type_primaire, type_secondaire, pv, attaque, defense) => {
-        const query = 'UPDATE pokemon SET nom = ?, type_primaire = ?, type_secondaire = ?, pv = ?, attaque = ?, defense = ? WHERE id = ?';
+        const query = 'UPDATE pokemon SET nom = $1, type_primaire = $2, type_secondaire = $3, pv = $4, attaque = $5, defense = $6 WHERE id = $7';
         const values = [nom, type_primaire, type_secondaire, pv, attaque, defense, id];
 
         return new Promise((resolve, reject) => {
