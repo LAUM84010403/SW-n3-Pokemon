@@ -23,33 +23,33 @@ module.exports = {
         return new Promise((resolve, reject) => {    
             const query = 'SELECT * FROM pokemon WHERE id = $1';
 
-            db.query(query, pokemonId, (erreur, resultat) => {
-                if (erreur) {
-                    console.log('Erreur sqlState : ' + erreur);
-                    console.log(`Erreur sqlState ${erreur.sqlState} : ${erreur.sqlMessage}`);
-                    reject(erreur);
+            db.query(query, pokemonId, (err, result) => {
+                if (err) {
+                    console.log('Erreur sqlState : ' + err);
+                    console.log(`Erreur sqlState ${err.sqlState} : ${err.sqlMessage}`);
+                    reject(err);
                 }
 
-                resolve(resultat.rows);
+                resolve(result.rows);
             });
         });
     },
     afficherListeBD: (typeTitre, offset) => {
         return new Promise((resolve, reject) => {
-            const query = `SELECT id, nom FROM pokemon WHERE type_primaire = ? ORDER BY id LIMIT 25 OFFSET ?`;
+            const query = `SELECT id, nom FROM pokemon WHERE type_primaire = $1 ORDER BY id LIMIT 25 OFFSET $2`;
             const value = [typeTitre, offset]
                 db.query(query, value, (err, result) => {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(result);
+                        resolve(result.row);
                     }
                 });
             });
     },
     supprimerPokemonDB: (pokemonId) => {
-        const infoQuery = 'SELECT * FROM pokemon WHERE id = ?';
-        const deleteQuery = 'DELETE FROM pokemon WHERE id = ?';
+        const infoQuery = 'SELECT * FROM pokemon WHERE id = $1';
+        const deleteQuery = 'DELETE FROM pokemon WHERE id = $1';
 
         return new Promise((resolve, reject) => {
             db.query(deleteQuery, [pokemonId], (err, deleteResult) => {
@@ -62,7 +62,7 @@ module.exports = {
                             console.error('Erreur lors de la récupération du pokémon :', err);
                             reject(err);
                         } else {
-                            resolve(infoResult);
+                            resolve(infoResult.row);
                         }
                     });
                 }
@@ -70,7 +70,7 @@ module.exports = {
         });
     },
     ajouterNouveauPokemonDB: (nom, type_primaire, type_secondaire, pv, attaque, defense) => {
-        const query = 'INSERT INTO pokemon(nom, type_primaire, type_secondaire, pv, attaque, defense) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO pokemon(nom, type_primaire, type_secondaire, pv, attaque, defense) VALUES ($1, $2, $3, $4, $5, $6)';
         const values = [nom, type_primaire, type_secondaire, pv, attaque, defense];
 
         return new Promise((resolve, reject) => {
@@ -78,7 +78,7 @@ module.exports = {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result);
+                    resolve(result.row);
                 }
             });
         });
