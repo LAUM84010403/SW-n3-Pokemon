@@ -14,20 +14,23 @@ module.exports = {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(resultat.rows);
+                    resolve(result.rows);
                 }
             });
         });
     },
     obtenirUnPokemonDB: (pokemonId) => {
-        const query = 'SELECT * FROM pokemon WHERE id = ?';
-        return new Promise((resolve, reject) => {
-            db.query(query, pokemonId, (err, result) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(result);
+        return new Promise((resolve, reject) => {    
+            const query = 'SELECT * FROM pokemon WHERE id = $1';
+
+            db.query(query, pokemonId, (erreur, resultat) => {
+                if (erreur) {
+                    console.log('Erreur sqlState : ' + erreur);
+                    console.log(`Erreur sqlState ${erreur.sqlState} : ${erreur.sqlMessage}`);
+                    reject(erreur);
                 }
+
+                resolve(resultat.rows);
             });
         });
     },
