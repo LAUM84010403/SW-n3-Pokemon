@@ -22,15 +22,18 @@ module.exports = {
     obtenirUnPokemonDB: (pokemonId) => {
         return new Promise((resolve, reject) => {    
             const query = 'SELECT * FROM pokemon WHERE id = $1';
-
+        
             db.query(query, pokemonId, (err, result) => {
                 if (err) {
                     console.log('Erreur sqlState : ' + err);
                     console.log(`Erreur sqlState ${err.sqlState} : ${err.sqlMessage}`);
                     reject(err);
                 }
-
-                resolve(result.row);
+                if (result && result.rows && result.rows.length > 0) {
+                    resolve(result.rows[0]);
+                } else {
+                    reject(new Error("Aucun résultat trouvé pour l'ID spécifié"));
+                }
             });
         });
     },
