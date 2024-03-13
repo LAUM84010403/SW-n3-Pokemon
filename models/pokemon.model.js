@@ -1,7 +1,8 @@
 // MANIPULATION(model) DE LA BASE DE DONNÉ POUR L'API POKEMON
 
 //Base de donnée
-const db = require('../.src/config/db.js');
+//const db = require('../.src/config/db.js');
+const db = require("../.src/config/db_pg.js");
 
 //équivalent du main
 module.exports = {

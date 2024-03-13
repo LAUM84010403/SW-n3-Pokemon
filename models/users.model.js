@@ -3,7 +3,8 @@
 //const bcrypt = require('bcrypt');
 
 //Base de donnée
-const db = require('../.src/config/db.js');
+//const db = require('../.src/config/db.js');
+const db = require("../.src/config/db_pg.js");
 
 module.exports = {
 
