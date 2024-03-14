@@ -31,7 +31,7 @@ module.exports = {
                     reject(err);
                 }
 
-                resolve(result.row);
+                resolve(result.rows);
             });
         });
     },
