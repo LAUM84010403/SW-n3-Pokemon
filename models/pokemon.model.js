@@ -46,7 +46,7 @@ module.exports = {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(result.row);
+                        resolve(result.rows);
                     }
                 });
             });
@@ -66,7 +66,7 @@ module.exports = {
                             console.error('Erreur lors de la récupération du pokémon :', err);
                             reject(err);
                         } else {
-                            resolve(infoResult.row);
+                            resolve(infoResult.rows);
                         }
                     });
                 }
@@ -82,7 +82,7 @@ module.exports = {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result.row);
+                    resolve(result.rows);
                 }
             });
         });
@@ -96,7 +96,7 @@ module.exports = {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result);
+                    resolve(result.rows);
                 }
             });
         });
