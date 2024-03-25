@@ -8,8 +8,8 @@ const db = require("../.src/config/db_pg.js");
 module.exports = {
 
     obtenirTousPokemonDB: () => {
-        const query = 'SELECT * FROM pokemon ORDER BY id';
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {    
+            const query = 'SELECT * FROM pokemon ORDER BY id';
             db.query(query, (err, result) => {
                 if (err) {
                     reject(err);

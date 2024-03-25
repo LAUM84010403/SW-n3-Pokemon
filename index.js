@@ -29,11 +29,6 @@ app.get('/', (req, res) => {
 const routesPokemon = require('./routes/routes_pokemon.js');
 app.use('/api/pokemon/', routesPokemon);
 
-//ROUTES Utilisateur
-const routesUtilisateur = require('./routes/routes_users.js');
-app.use('/api/users/', routesUtilisateur);
-
-
 
 app.listen(PORT, () => {
     console.log(`Serveur démarré sur le port ${PORT}`);
