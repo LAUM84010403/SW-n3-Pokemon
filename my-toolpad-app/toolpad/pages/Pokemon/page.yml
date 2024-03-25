@@ -7,3 +7,17 @@ spec:
   display: shell
   authorization:
     allowAll: true
+  queries:
+    - name: pokemonListe
+      mode: query
+      query:
+        kind: rest
+        url: https://sw-n3-pokemon.onrender.com/api/pokemon/tous
+        headers: []
+        method: GET
+  content:
+    - component: DataGrid
+      name: dataGrid
+      props:
+        rows:
+          $$jsExpression: pokemonListe.data
