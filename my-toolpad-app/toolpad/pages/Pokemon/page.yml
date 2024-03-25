@@ -21,3 +21,18 @@ spec:
       props:
         rows:
           $$jsExpression: pokemonListe.data
+        columns:
+          - field: id
+            type: number
+          - field: nom
+            type: string
+          - field: type_primaire
+            type: string
+          - field: type_secondaire
+            type: string
+          - field: pv
+            type: number
+          - field: attaque
+            type: number
+          - field: defense
+            type: number
