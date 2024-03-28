@@ -7,19 +7,32 @@ spec:
   alias:
     - a9Xucvb
   content:
-    - component: Text
-      name: text
-      layout:
-        horizontalAlign: center
+    - component: PageRow
+      name: pageRow3
       props:
-        value: LISTE POKÉMON
-        variant: h4
+        justifyContent: start
+      children:
+        - component: Text
+          name: LISTEPOKEMON
+          layout:
+            horizontalAlign: center
+            columnSize: 1.682496607869742
+          props:
+            value: LISTE POKÉMON
+            variant: h4
+        - component: Button
+          name: button
+          layout:
+            columnSize: 0.3175033921302578
+          props:
+            onClick:
+              $$jsExpressionAction: querypokemonListe.refetch();
     - component: DataGrid
-      name: dataGrid
+      name: listepokemon
       props:
         rowsSource: prop
         rows:
-          $$jsExpression: pokemonListe.data
+          $$jsExpression: querypokemonListe.data
         columns:
           - field: id
             type: number
@@ -36,18 +49,200 @@ spec:
           - field: defense
             type: number
     - component: Text
-      name: text1
+      name: AJOUTERPOKEMON
       props:
         value: AJOUTER POKÉMON(CREATE)
     - component: Form
-      name: form
+      name: ajoutpokemon
       props:
         submitButtonText: Envoyer
+        onSubmit:
+          $$jsExpressionAction: queryajoutPoke.call
+      children:
+        - component: PageRow
+          name: pageRow
+          props:
+            justifyContent: start
+          children:
+            - component: PageColumn
+              name: pageColumn
+              layout:
+                columnSize: 1
+              children:
+                - component: TextField
+                  name: textField3
+                  props:
+                    label: Nom
+                    name: nomdata
+                    isRequired: true
+                - component: TextField
+                  name: textField1
+                  props:
+                    label: pv
+                    name: pvdata
+                    isRequired: false
+                  layout:
+                    columnSize: 1
+            - component: PageColumn
+              name: pageColumn1
+              layout:
+                columnSize: 1
+              children:
+                - component: TextField
+                  name: textField
+                  layout:
+                    columnSize: 1
+                  props:
+                    label: type_primaire
+                    name: typeprimairedata
+                    isRequired: false
+                - component: TextField
+                  name: textField4
+                  props:
+                    label: attaque
+                    name: attaquedata
+                    isRequired: false
+            - component: PageColumn
+              name: pageColumn2
+              layout:
+                columnSize: 1
+              children:
+                - component: TextField
+                  name: textField2
+                  layout:
+                    columnSize: 1
+                  props:
+                    label: type_secondaire
+                    name: typesecondairedata
+                - component: TextField
+                  name: textField5
+                  props:
+                    label: defense
+                    name: defensedata
+    - component: Text
+      name: MODIFIERPOKEMON
+      props:
+        value: MODIFIER POKÉMON
+    - component: Form
+      name: modifierpokemon
+      props:
+        submitButtonText: Envoyer
+      children:
+        - component: PageColumn
+          name: pageColumn3
+          children:
+            - component: TextField
+              name: textField7
+              layout:
+                horizontalAlign: start
+                verticalAlign: center
+              props:
+                size: small
+                variant: outlined
+                fullWidth: true
+                label: ID
+            - component: TextField
+              name: textField6
+              props:
+                label: Nom
+            - component: PageRow
+              name: pageRow1
+              props:
+                justifyContent: start
+              children:
+                - component: TextField
+                  name: textField6
+                  layout:
+                    columnSize: 0.6594301221166893
+                  props:
+                    label: type_primaire
+                - component: TextField
+                  name: textField6
+                  layout:
+                    columnSize: 1.3405698778833108
+                  props:
+                    label: type_secondaire
+            - component: PageRow
+              name: pageRow2
+              props:
+                justifyContent: start
+              children:
+                - component: TextField
+                  name: textField6
+                  layout:
+                    columnSize: 1
+                  props:
+                    label: pv
+                - component: TextField
+                  name: textField6
+                  layout:
+                    columnSize: 1
+                  props:
+                    label: attaque
+                - component: TextField
+                  name: textField6
+                  layout:
+                    columnSize: 1
+                  props:
+                    label: defense
+          layout:
+            columnSize: 1.682496607869742
   queries:
-    - name: pokemonListe
+    - name: querypokemonListe
       mode: query
       query:
         kind: rest
         url: https://sw-n3-pokemon.onrender.com/api/pokemon/tous
+        headers: []
+        method: GET
+    - name: queryajoutPoke
+      mode: query
+      query:
+        kind: rest
+        url: https://sw-n3-pokemon.onrender.com/api/pokemon
+        headers: []
+        method: POST
+        body:
+          kind: raw
+          content: "{\r
+
+            \    \"nom\": \"HOMAS\",\r
+
+            \    \"type_primaire\": \"Fire\",\r
+
+            \    \"type_secondaire\": \"Fire\",\r
+
+            \    \"pv\": 16,\r
+
+            \    \"attaque\": 16,\r
+
+            \    \"defense\": 16\r
+
+            }"
+          contentType: application/json
+      parameters:
+        - name: nom
+          value:
+            $$jsExpression: ajoutpokemon.value.textField3 ?? "Missingno"
+        - name: type_primaire
+          value:
+            $$jsExpression: ajoutpokemon.value.textField ?? "Normal"
+        - name: type_secondaire
+          value:
+            $$jsExpression: ajoutpokemon.value.textField2 ?? "N/A"
+        - name: pv
+          value:
+            $$jsExpression: ajoutpokemon.value.textField1 ?? "404"
+        - name: attaque
+          value:
+            $$jsExpression: ajoutpokemon.value.attaquedata ?? "404"
+        - name: defense
+          value:
+            $$jsExpression: ajoutpokemon.value.defensedata ?? "404"
+    - name: querymodifierPoke
+      mode: query
+      query:
+        kind: rest
+        url: Ajouter poke
         headers: []
         method: GET
