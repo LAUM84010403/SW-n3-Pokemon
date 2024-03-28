@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mui/mui-toolpad/v0.1.53/docs/schemas/v1/definitions.json#properties/Page
+
+apiVersion: v1
+kind: page
+spec:
+  title: Default page
+  alias:
+    - a9Xucvb
+  content:
+    - component: Text
+      name: text
+      layout:
+        horizontalAlign: center
+      props:
+        value: LISTE POKÉMON
+        variant: h4
+    - component: DataGrid
+      name: dataGrid
+      props:
+        rowsSource: prop
+        rows:
+          $$jsExpression: pokemonListe.data
+        columns:
+          - field: id
+            type: number
+          - field: nom
+            type: string
+          - field: type_primaire
+            type: string
+          - field: type_secondaire
+            type: string
+          - field: pv
+            type: number
+          - field: attaque
+            type: number
+          - field: defense
+            type: number
+    - component: Text
+      name: text1
+      props:
+        value: AJOUTER POKÉMON(CREATE)
+    - component: Form
+      name: form
+      props:
+        submitButtonText: Envoyer
+  queries:
+    - name: pokemonListe
+      mode: query
+      query:
+        kind: rest
+        url: https://sw-n3-pokemon.onrender.com/api/pokemon/tous
+        headers: []
+        method: GET
